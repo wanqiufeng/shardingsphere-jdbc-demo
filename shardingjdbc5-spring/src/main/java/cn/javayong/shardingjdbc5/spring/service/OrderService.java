@@ -82,8 +82,9 @@ public class OrderService {
         return orderId;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void batchsave() {
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 10; i++) {
             Long entId = RandomUtils.nextLong();
             String regionCode = "BJ";
 
@@ -132,6 +133,7 @@ public class OrderService {
                 orderMapper.saveOrderItem(item2);
             }
         }
+        //throw new RuntimeException();
     }
 
 }
